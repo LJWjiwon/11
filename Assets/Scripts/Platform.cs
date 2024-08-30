@@ -8,10 +8,34 @@ public class Platform : MonoBehaviour {
     // 컴포넌트가 활성화될때 마다 매번 실행되는 메서드
     private void OnEnable() {
         // 발판을 리셋하는 처리
+        stepped = false;
+
+        for(int i = 0; i < obstacles.Length; i++)
+        {
+            //Random.Range(int, int)
+            //랜덤한 숫자를 뽑는 함수
+            //Random.Range(0,3)하면 0이상 3미만인 숫자를 랜덤하게 뽑음
+            //즉, <0,1,2>를 뽑게 됨
+            //지금은 하나의 장애물 당 33%의 확률로 켜지도록 만듦
+            if(Random.Range(0, 3) == 0)
+            {
+                obstacles[i].SetActive(true);
+            }
+            else
+            {
+                obstacles[i].SetActive(false);
+            }
+        }
     }
      
 
     void OnCollisionEnter2D(Collision2D collision) {
         // 플레이어 캐릭터가 자신을 밟았을때 점수를 추가하는 처리
+        if (collision.gameObject.CompareTag("Player")
+            && !stepped)
+        {
+            stepped = true;
+            GameManager.instance.AddScore(1);
+        }
     }
 }
