@@ -9,6 +9,7 @@ public class Platform : MonoBehaviour {
     private void OnEnable() {
         // 발판을 리셋하는 처리
     }
+     
 
     void OnCollisionEnter2D(Collision2D collision) {
         // 플레이어 캐릭터가 자신을 밟았을때 점수를 추가하는 처리

@@ -9,6 +9,10 @@ public class ScrollingObject : MonoBehaviour {
         //Transform.Translate(벡터값)
         //벡터값의 힘과 방향으로 물체를 이동시킴
         //Time.deltaTime -> 프레임을 균등하게 배분시켜주는 역할
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
+
+        if(!GameManager.instance.isGameover)
+        {
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
+        }
     }
 }

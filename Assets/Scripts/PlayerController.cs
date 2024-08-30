@@ -79,6 +79,9 @@ public class PlayerController : MonoBehaviour {
         //즉 속력이 0이 되는 것임
         playerRigidbody.velocity = Vector2.zero;
         isDead = true;
+
+        //GameManager에 있는 OnPlayerDead 함수를 호출함
+        GameManager.instance.OnPlayerDead();
    }
 
    private void OnTriggerEnter2D(Collider2D other) {
